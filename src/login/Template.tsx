@@ -57,7 +57,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div id="kc-header" className={kcClsx("kcHeaderClass")}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {/* {msg("loginTitleHtml", realm.displayNameHtml)} */}
-                    <img src={logoSvgUrl} alt="Trellix" width={"150px"} />
+                    <img src={logoSvgUrl} alt="Trellix" width={"300px"} />
                 </div>
             </div>
             <div className={kcClsx("kcFormCardClass")}>
