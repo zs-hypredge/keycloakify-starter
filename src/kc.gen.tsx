@@ -13,11 +13,13 @@ export type ThemeName = "keycloakify-starter";
 
 export const themeNames: ThemeName[] = ["keycloakify-starter"];
 
-export type KcEnvName = never;
+export type KcEnvName = "ZS_PRODUCT_ID";
 
-export const kcEnvNames: KcEnvName[] = [];
+export const kcEnvNames: KcEnvName[] = ["ZS_PRODUCT_ID"];
 
-export const kcEnvDefaults: Record<KcEnvName, string> = {};
+export const kcEnvDefaults: Record<KcEnvName, string> = {
+    "ZS_PRODUCT_ID": "hypredge"
+};
 
 /**
  * NOTE: Do not import this type except maybe in your entrypoint.
