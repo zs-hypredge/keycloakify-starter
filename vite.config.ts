@@ -7,7 +7,10 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+            environmentVariables: [
+                { name: "ZS_PRODUCT_ID", default: "hypredge" }
+            ]
         })
     ]
 });

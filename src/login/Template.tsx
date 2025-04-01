@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { clsx } from "keycloakify/tools/clsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { TemplateProps } from "keycloakify/login/TemplateProps";
@@ -7,7 +7,8 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-import logoSvgUrl from "./assets/trellix_logo.svg";
+import trellixLogo from "./assets/trellix_logo.svg";
+import hypredgeLogo from "./assets/hypredge_logo.svg";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -26,11 +27,20 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         children
     } = props;
 
+    const [logoUrl, setLogoUrl] = useState<string>("");
+    const productId = kcContext.properties?.ZS_PRODUCT_ID || "hypredge";
+    
     const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
 
     const { msg, msgStr, currentLanguage, enabledLanguages } = i18n;
 
     const { auth, url, message, isAppInitiatedAction } = kcContext;
+
+    useEffect(() => {
+        // Set the appropriate logo based on product ID
+        const logo = productId.toLowerCase() === "trellix" ? trellixLogo : hypredgeLogo;
+        setLogoUrl(logo);
+    }, [productId]);
 
     useEffect(() => {
         document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName);
@@ -57,7 +67,11 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div id="kc-header" className={kcClsx("kcHeaderClass")}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {/* {msg("loginTitleHtml", realm.displayNameHtml)} */}
-                    <img src={logoSvgUrl} alt="Trellix" width={"300px"} />
+                    <img 
+                        src={logoUrl} 
+                        alt={productId === "trellix" ? "Trellix" : "HyprEdge"} 
+                        width={"300px"} 
+                    />
                 </div>
             </div>
             <div className={kcClsx("kcFormCardClass")}>
