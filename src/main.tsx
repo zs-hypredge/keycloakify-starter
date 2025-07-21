@@ -5,6 +5,7 @@ import { setFavicon, getProductId } from "./utils/favicon";
 
 // The following block can be uncommented to test a specific page with `yarn dev`
 // Don't forget to comment back or your bundle size will increase
+// ESCODE - 2025
 /*
 import { getKcContextMock } from "./login/KcPageStory";
 
