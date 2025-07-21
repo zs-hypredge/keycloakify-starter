@@ -1,8 +1,13 @@
+// Import favicon assets
+import hypredgeFavicon from "../login/assets/favicon-hypredge.svg";
+import trellixFavicon from "../login/assets/favicon-trellix.svg";
+
 /**
  * Utility function to dynamically change the favicon based on product ID
  */
 export function setFavicon(productId: string): void {
-    const faviconPath = `/favicon-${productId}.svg`;
+    // Get the appropriate favicon URL based on product ID
+    const faviconUrl = productId.toLowerCase() === "trellix" ? trellixFavicon : hypredgeFavicon;
     
     // Remove existing favicon links
     const existingLinks = document.querySelectorAll('link[rel*="icon"]');
@@ -12,11 +17,11 @@ export function setFavicon(productId: string): void {
     const link = document.createElement('link');
     link.rel = 'icon';
     link.type = 'image/svg+xml';
-    link.href = faviconPath;
+    link.href = faviconUrl;
     
     // Add error handling for favicon loading
     link.onerror = () => {
-        console.warn(`Failed to load favicon: ${faviconPath}`);
+        console.warn(`Failed to load favicon: ${faviconUrl}`);
         // Fallback to default favicon if available
         const fallbackLink = document.createElement('link');
         fallbackLink.rel = 'icon';
