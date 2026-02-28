@@ -10,6 +10,7 @@ import type { KcContext } from "./KcContext";
 import trellixLogo from "./assets/trellix_logo.svg";
 import hypredgeLogo from "./assets/hypredge_logo.svg";
 import { getProductDefaults, getSecondaryColor, getTextColor } from "./utils/themeColors";
+import { ParticleBackground } from "./components/ParticleBackground";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -36,6 +37,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { msg, msgStr, currentLanguage, enabledLanguages } = i18n;
 
     const { auth, url, message, isAppInitiatedAction } = kcContext;
+
+    const isHypredge = productId.toLowerCase() !== "trellix";
 
     useEffect(() => {
         const logo = productId.toLowerCase() === "trellix" ? trellixLogo : hypredgeLogo;
@@ -90,8 +93,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <div className={kcClsx("kcLoginClass")}>
-            <div id="kc-header" className={kcClsx("kcHeaderClass")}>
+        <div className={kcClsx("kcLoginClass")} style={{ position: "relative" }}>
+            {isHypredge && <ParticleBackground />}
+            <div id="kc-header" className={kcClsx("kcHeaderClass")} style={{ position: "relative", zIndex: 1 }}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {/* {msg("loginTitleHtml", realm.displayNameHtml)} */}
                     <img
@@ -101,7 +105,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     />
                 </div>
             </div>
-            <div className={kcClsx("kcFormCardClass")}>
+            <div className={kcClsx("kcFormCardClass")} style={{ position: "relative", zIndex: 1 }}>
                 <header className={kcClsx("kcFormHeaderClass")}>
                     {enabledLanguages.length > 1 && (
                         <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
