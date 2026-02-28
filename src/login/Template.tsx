@@ -56,14 +56,12 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         const bg = themeBg || defaults.bg;
         const secondary = getSecondaryColor(bg, isLight);
         const textColor = getTextColor(bg);
-        const btnTextColor = getTextColor(primary);
 
         const root = document.documentElement;
         root.style.setProperty("--zs-primary", primary);
         root.style.setProperty("--zs-bg", bg);
         root.style.setProperty("--zs-secondary", secondary);
         root.style.setProperty("--zs-text", textColor);
-        root.style.setProperty("--zs-btn-text", btnTextColor);
     }, [
         productId,
         kcContext.properties?.THEME_PRIMARY_COLOR,

@@ -45,17 +45,35 @@ input[type="password"],
 input[type="email"] {
   background-color: var(--zs-bg, #0a0f24) !important;
   color: var(--zs-text, #ffffff) !important;
-  border: 1px solid var(--zs-primary, #7371fc) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Submit button */
+.pf-c-form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: var(--zs-primary, #7371fc) !important;
+  box-shadow: 0 0 0 1px var(--zs-primary, #7371fc) !important;
+  outline: none !important;
+}
+
+/* Password toggle (eye icon) button */
+.pf-c-button.pf-m-control {
+  background-color: var(--zs-bg, #0a0f24) !important;
+  color: var(--zs-text, #ffffff) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-left: none !important;
+}
+
+/* Submit button - always use white text for readability */
 #kc-login,
 input[type="submit"],
 button[type="submit"],
 .btn-primary {
   background-color: var(--zs-primary, #7371fc) !important;
-  color: var(--zs-btn-text, #ffffff) !important;
+  color: #ffffff !important;
   border-color: var(--zs-primary, #7371fc) !important;
+  font-weight: 600;
 }
 
 #kc-login:hover,
@@ -69,6 +87,17 @@ button[type="submit"]:hover,
 a {
   color: var(--zs-primary, #7371fc) !important;
   text-decoration: none;
+}
+
+/* Info section (bottom of forgot password, etc.) */
+#kc-info-wrapper {
+  background-color: var(--zs-bg, #0a0f24) !important;
+  color: var(--zs-text, #ffffff) !important;
+  opacity: 0.8;
+}
+
+#kc-info {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Locale dropdown */
@@ -93,5 +122,10 @@ a {
 /* Checkbox / remember me */
 .pf-c-check__label,
 #kc-form-options label {
+  color: var(--zs-text, #ffffff) !important;
+}
+
+/* Form options (back to login, etc.) */
+#kc-form-options {
   color: var(--zs-text, #ffffff) !important;
 }
