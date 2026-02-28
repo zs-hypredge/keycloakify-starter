@@ -45,7 +45,8 @@ input[type="password"],
 input[type="email"] {
   background-color: var(--zs-bg, #0a0f24) !important;
   color: var(--zs-text, #ffffff) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .pf-c-form-control:focus,
@@ -61,8 +62,8 @@ input[type="email"]:focus {
 .pf-c-button.pf-m-control {
   background-color: var(--zs-bg, #0a0f24) !important;
   color: var(--zs-text, #ffffff) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-left: none !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Submit button - always use white text for readability */
