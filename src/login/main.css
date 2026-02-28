@@ -1,9 +1,56 @@
 
 body.kcBodyClass {
-  background: black !important;
+  background: var(--zs-bg, black) !important;
 }
 
-a{
-  color: #010101;
+a {
+  color: var(--zs-primary, #010101);
   text-decoration: none;
+}
+
+/* Login form card */
+#kc-form,
+.card-pf {
+  color: var(--zs-text, #ffffff);
+}
+
+/* Submit button */
+#kc-login,
+input[type="submit"],
+button[type="submit"] {
+  background-color: var(--zs-primary, #7371fc) !important;
+  color: var(--zs-btn-text, #ffffff) !important;
+  border-color: var(--zs-primary, #7371fc) !important;
+}
+
+#kc-login:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+/* Form inputs */
+.pf-c-form-control,
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  background-color: var(--zs-secondary, #1f2439) !important;
+  color: var(--zs-text, #ffffff) !important;
+  border-color: var(--zs-secondary, #1f2439) !important;
+}
+
+/* Links */
+#kc-registration a,
+#kc-info a,
+.kc-social-links a {
+  color: var(--zs-primary, #7371fc) !important;
+}
+
+/* Alert styles */
+.alert-error, .pf-m-danger {
+  color: #e74c3c;
+}
+
+.alert-success {
+  color: #2ecc71;
 }

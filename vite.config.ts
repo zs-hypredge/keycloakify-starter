@@ -9,7 +9,10 @@ export default defineConfig({
         keycloakify({
             accountThemeImplementation: "none",
             environmentVariables: [
-                { name: "ZS_PRODUCT_ID", default: "hypredge" }
+                { name: "ZS_PRODUCT_ID", default: "hypredge" },
+                { name: "THEME_PRIMARY_COLOR", default: "" },
+                { name: "THEME_BACKGROUND_COLOR", default: "" },
+                { name: "THEME_LIGHT_MODE", default: "" }
             ]
         })
     ]

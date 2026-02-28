@@ -9,6 +9,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import trellixLogo from "./assets/trellix_logo.svg";
 import hypredgeLogo from "./assets/hypredge_logo.svg";
+import { getProductDefaults, getSecondaryColor, getTextColor } from "./utils/themeColors";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -29,7 +30,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     const [logoUrl, setLogoUrl] = useState<string>("");
     const productId = kcContext.properties?.ZS_PRODUCT_ID || "hypredge";
-    
+
     const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
 
     const { msg, msgStr, currentLanguage, enabledLanguages } = i18n;
@@ -37,10 +38,38 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { auth, url, message, isAppInitiatedAction } = kcContext;
 
     useEffect(() => {
-        // Set the appropriate logo based on product ID
         const logo = productId.toLowerCase() === "trellix" ? trellixLogo : hypredgeLogo;
         setLogoUrl(logo);
     }, [productId]);
+
+    // Apply theme CSS variables from kcContext.properties (injected by SPI)
+    useEffect(() => {
+        const themePrimary = kcContext.properties?.THEME_PRIMARY_COLOR;
+        const themeBg = kcContext.properties?.THEME_BACKGROUND_COLOR;
+        const themeLightMode = kcContext.properties?.THEME_LIGHT_MODE;
+
+        // Resolve: use SPI-injected values, or fall back to product defaults
+        const isLight = themeLightMode === "true";
+        const defaults = getProductDefaults(productId, isLight);
+
+        const primary = themePrimary || defaults.primary;
+        const bg = themeBg || defaults.bg;
+        const secondary = getSecondaryColor(bg, isLight);
+        const textColor = getTextColor(bg);
+        const btnTextColor = getTextColor(primary);
+
+        const root = document.documentElement;
+        root.style.setProperty("--zs-primary", primary);
+        root.style.setProperty("--zs-bg", bg);
+        root.style.setProperty("--zs-secondary", secondary);
+        root.style.setProperty("--zs-text", textColor);
+        root.style.setProperty("--zs-btn-text", btnTextColor);
+    }, [
+        productId,
+        kcContext.properties?.THEME_PRIMARY_COLOR,
+        kcContext.properties?.THEME_BACKGROUND_COLOR,
+        kcContext.properties?.THEME_LIGHT_MODE
+    ]);
 
     useEffect(() => {
         document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName);
@@ -67,10 +96,10 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div id="kc-header" className={kcClsx("kcHeaderClass")}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {/* {msg("loginTitleHtml", realm.displayNameHtml)} */}
-                    <img 
-                        src={logoUrl} 
-                        alt={productId === "trellix" ? "Trellix" : "HyprEdge"} 
-                        width={"300px"} 
+                    <img
+                        src={logoUrl}
+                        alt={productId === "trellix" ? "Trellix" : "HyprEdge"}
+                        width={"300px"}
                     />
                 </div>
             </div>
