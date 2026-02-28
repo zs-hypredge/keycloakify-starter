@@ -1,32 +1,41 @@
 
+/* Override PatternFly CSS variables with our theme values */
+:root {
+  --pf-global--primary-color--100: var(--zs-primary, #7371fc);
+  --pf-global--primary-color--200: var(--zs-primary, #7371fc);
+  --pf-global--BackgroundColor--100: var(--zs-secondary, #1f2439);
+  --pf-global--BackgroundColor--200: var(--zs-bg, #0a0f24);
+  --pf-global--Color--100: var(--zs-text, #ffffff);
+  --pf-global--Color--200: var(--zs-text, #ffffff);
+}
+
+/* Page background */
 body.kcBodyClass {
-  background: var(--zs-bg, black) !important;
+  background: var(--zs-bg, #0a0f24) !important;
 }
 
-a {
-  color: var(--zs-primary, #010101);
-  text-decoration: none;
+/* Remove default keycloak background image */
+.login-pf {
+  background: none !important;
 }
 
-/* Login form card */
-#kc-form,
+/* Form card */
 .card-pf {
-  color: var(--zs-text, #ffffff);
-}
-
-/* Submit button */
-#kc-login,
-input[type="submit"],
-button[type="submit"] {
-  background-color: var(--zs-primary, #7371fc) !important;
-  color: var(--zs-btn-text, #ffffff) !important;
+  background-color: var(--zs-secondary, #1f2439) !important;
   border-color: var(--zs-primary, #7371fc) !important;
+  color: var(--zs-text, #ffffff) !important;
 }
 
-#kc-login:hover,
-input[type="submit"]:hover,
-button[type="submit"]:hover {
-  opacity: 0.9;
+/* Page title */
+h1#kc-page-title {
+  color: var(--zs-text, #ffffff) !important;
+}
+
+/* Form labels */
+.pf-c-form__label-text,
+label.pf-c-form__label,
+label {
+  color: var(--zs-text, #ffffff) !important;
 }
 
 /* Form inputs */
@@ -34,23 +43,55 @@ button[type="submit"]:hover {
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-  background-color: var(--zs-secondary, #1f2439) !important;
+  background-color: var(--zs-bg, #0a0f24) !important;
   color: var(--zs-text, #ffffff) !important;
-  border-color: var(--zs-secondary, #1f2439) !important;
+  border: 1px solid var(--zs-primary, #7371fc) !important;
+}
+
+/* Submit button */
+#kc-login,
+input[type="submit"],
+button[type="submit"],
+.btn-primary {
+  background-color: var(--zs-primary, #7371fc) !important;
+  color: var(--zs-btn-text, #ffffff) !important;
+  border-color: var(--zs-primary, #7371fc) !important;
+}
+
+#kc-login:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover,
+.btn-primary:hover {
+  opacity: 0.85;
 }
 
 /* Links */
-#kc-registration a,
-#kc-info a,
-.kc-social-links a {
+a {
   color: var(--zs-primary, #7371fc) !important;
+  text-decoration: none;
+}
+
+/* Locale dropdown */
+#kc-locale ul {
+  background-color: var(--zs-secondary, #1f2439) !important;
+}
+
+#kc-locale-dropdown a,
+#kc-locale-dropdown button {
+  color: var(--zs-text, #ffffff) !important;
 }
 
 /* Alert styles */
 .alert-error, .pf-m-danger {
-  color: #e74c3c;
+  color: #e74c3c !important;
 }
 
 .alert-success {
-  color: #2ecc71;
+  color: #2ecc71 !important;
+}
+
+/* Checkbox / remember me */
+.pf-c-check__label,
+#kc-form-options label {
+  color: var(--zs-text, #ffffff) !important;
 }
