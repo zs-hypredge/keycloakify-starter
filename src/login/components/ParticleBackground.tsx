@@ -16,7 +16,7 @@ const COLORS = [
     "rgba(255, 185, 0, 0.6)"    // Amber
 ];
 
-const CONNECTION_DISTANCE = 150;
+const CONNECTION_DISTANCE = 180;
 const MOUSE_REPULSION_RADIUS = 200;
 const FRICTION = 0.998;
 const DRIFT = 0.03;
@@ -45,7 +45,7 @@ export function ParticleBackground() {
         }
 
         function initParticles(w: number, h: number) {
-            const count = Math.min(80, Math.floor((w * h) / 15000));
+            const count = Math.min(140, Math.floor((w * h) / 8000));
             particles = [];
             for (let i = 0; i < count; i++) {
                 particles.push({
@@ -53,7 +53,7 @@ export function ParticleBackground() {
                     y: Math.random() * h,
                     vx: (Math.random() - 0.5) * 0.8,
                     vy: (Math.random() - 0.5) * 0.8,
-                    radius: Math.random() * 2 + 1.5,
+                    radius: Math.random() * 2.5 + 1.5,
                     color: COLORS[Math.floor(Math.random() * COLORS.length)]
                 });
             }
@@ -72,12 +72,12 @@ export function ParticleBackground() {
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < CONNECTION_DISTANCE) {
-                        const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.25;
+                        const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.3;
                         ctx!.beginPath();
                         ctx!.moveTo(particles[i].x, particles[i].y);
                         ctx!.lineTo(particles[j].x, particles[j].y);
                         ctx!.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-                        ctx!.lineWidth = 0.5;
+                        ctx!.lineWidth = 1;
                         ctx!.stroke();
                     }
                 }
