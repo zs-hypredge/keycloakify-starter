@@ -45,7 +45,8 @@
         "p-debounce": "^5.1.0",
         "reactflow": "^11.11.4",
         "use-react-router-breadcrumbs": "^4.0.1",
-        "yaml": "^2.8.2"
+        "yaml": "^2.8.2",
+        "@keycloakify/email-native": "~260007.0.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.15.0",
