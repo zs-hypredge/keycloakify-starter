@@ -1,6 +1,9 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
+# admin/PageHeader.tsx
+# account/root/Header.tsx
+# email/html/template.ftl
 # === Owned files end =====
 
 # === @keycloakify/email-native v260007.0.0 ===
@@ -21,7 +24,6 @@
 /email/html/identity-provider-link.ftl
 /email/html/org-invite.ftl
 /email/html/password-reset.ftl
-/email/html/template.ftl
 /email/messages/messages_ar.properties
 /email/messages/messages_ca.properties
 /email/messages/messages_cs.properties
@@ -83,7 +85,6 @@
 /admin/KcContext.ts
 /admin/KcPage.tsx
 /admin/page-nav.css
-/admin/PageHeader.tsx
 /admin/PageHeaderClearCachesModal.tsx
 /admin/PageNav.tsx
 /admin/PageNotFoundSection.tsx
@@ -874,7 +875,6 @@
 /account/resources/SharedWith.tsx
 /account/resources/ShareTheResource.tsx
 /account/root/header.module.css
-/account/root/Header.tsx
 /account/root/PageNav.tsx
 /account/root/Root.tsx
 /account/utils/formatDate.ts
