@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none",
+            accountThemeImplementation: "Single-Page",
             environmentVariables: [
                 { name: "ZS_PRODUCT_ID", default: "hypredge" },
                 { name: "THEME_PRIMARY_COLOR", default: "" },

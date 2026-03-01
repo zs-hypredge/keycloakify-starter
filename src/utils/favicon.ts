@@ -1,6 +1,6 @@
 // Import favicon assets
-import hypredgeFavicon from "../login/assets/favicon-hypredge.svg";
-import trellixFavicon from "../login/assets/favicon-trellix.svg";
+import hypredgeFavicon from "../assets/favicon-hypredge.svg";
+import trellixFavicon from "../assets/favicon-trellix.svg";
 
 /**
  * Utility function to dynamically change the favicon based on product ID
