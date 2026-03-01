@@ -33,13 +33,16 @@ h1#kc-page-title {
 
 /* Form labels */
 .pf-c-form__label-text,
+.pf-v5-c-form__label-text,
 label.pf-c-form__label,
+label.pf-v5-c-form__label,
 label {
   color: var(--zs-text, #ffffff) !important;
 }
 
 /* Form inputs */
 .pf-c-form-control,
+.pf-v5-c-form-control,
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -50,6 +53,7 @@ input[type="email"] {
 }
 
 .pf-c-form-control:focus,
+.pf-v5-c-form-control:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus {
@@ -59,7 +63,8 @@ input[type="email"]:focus {
 }
 
 /* Password toggle (eye icon) button */
-.pf-c-button.pf-m-control {
+.pf-c-button.pf-m-control,
+.pf-v5-c-button.pf-m-control {
   background-color: var(--zs-bg, #0a0f24) !important;
   color: var(--zs-text, #ffffff) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -68,7 +73,8 @@ input[type="email"]:focus {
 }
 
 /* Input next to password toggle - square off right side */
-.pf-c-input-group .pf-c-form-control {
+.pf-c-input-group .pf-c-form-control,
+.pf-v5-c-input-group .pf-v5-c-form-control {
   border-radius: 4px 0 0 4px !important;
   border-right: none !important;
 }
@@ -129,6 +135,7 @@ a {
 
 /* Checkbox / remember me */
 .pf-c-check__label,
+.pf-v5-c-check__label,
 #kc-form-options label {
   color: var(--zs-text, #ffffff) !important;
 }
