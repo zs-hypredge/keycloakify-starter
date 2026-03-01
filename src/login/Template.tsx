@@ -7,8 +7,8 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-import trellixLogo from "./assets/trellix_logo.svg";
-import hypredgeLogo from "./assets/hypredge_logo.svg";
+import trellixLogo from "../assets/trellix_logo.svg";
+import hypredgeLogo from "../assets/hypredge_logo.svg";
 import { getProductDefaults, getSecondaryColor, getTextColor } from "./utils/themeColors";
 import { ParticleBackground } from "./components/ParticleBackground";
 
