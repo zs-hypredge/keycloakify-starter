@@ -1,13 +1,19 @@
 // Import favicon assets
 import hypredgeFavicon from "../assets/favicon-hypredge.svg";
 import trellixFavicon from "../assets/favicon-trellix.svg";
+import plextracFavicon from "../assets/favicon-plextrac.svg";
+
+const FAVICON_MAP: Record<string, string> = {
+    hypredge: hypredgeFavicon,
+    trellix: trellixFavicon,
+    plextrac: plextracFavicon
+};
 
 /**
  * Utility function to dynamically change the favicon based on product ID
  */
 export function setFavicon(productId: string): void {
-    // Get the appropriate favicon URL based on product ID
-    const faviconUrl = productId.toLowerCase() === "trellix" ? trellixFavicon : hypredgeFavicon;
+    const faviconUrl = FAVICON_MAP[productId.toLowerCase()] ?? FAVICON_MAP.hypredge;
     
     // Remove existing favicon links
     const existingLinks = document.querySelectorAll('link[rel*="icon"]');

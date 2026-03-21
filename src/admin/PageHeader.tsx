@@ -11,6 +11,19 @@
 
 import hypredgeLogoUrl from "../assets/hypredge_logo.svg";
 import trellixLogoUrl from "../assets/trellix_logo.svg";
+import plextracLogoUrl from "../assets/plextrac_logo.svg";
+
+const LOGO_MAP: Record<string, string> = {
+    hypredge: hypredgeLogoUrl,
+    trellix: trellixLogoUrl,
+    plextrac: plextracLogoUrl
+};
+
+const DISPLAY_NAME_MAP: Record<string, string> = {
+    hypredge: "HyprEdge",
+    trellix: "Trellix",
+    plextrac: "PlexTrac"
+};
 import { KeycloakMasthead, useEnvironment, useHelp } from "../shared/keycloak-ui-shared";
 import { DropdownItem, ToolbarItem } from "../shared/@patternfly/react-core";
 import { HelpIcon } from "../shared/@patternfly/react-icons";
@@ -105,7 +118,8 @@ export const Header = () => {
     const customLogo = contextLogo?.logo;
 
     const productId = window.kcContext?.properties?.ZS_PRODUCT_ID || "hypredge";
-    const defaultLogoUrl = productId.toLowerCase() === "trellix" ? trellixLogoUrl : hypredgeLogoUrl;
+    const pid = productId.toLowerCase();
+    const defaultLogoUrl = LOGO_MAP[pid] ?? LOGO_MAP.hypredge;
 
     const isMasterRealm = realm === "master";
     const isManager = hasAccess("manage-realm");
@@ -125,7 +139,7 @@ export const Header = () => {
                         ? joinPath(environment["resourceUrl"], customLogo)
                         : customLogo
                     : defaultLogoUrl,
-                alt: productId.toLowerCase() === "trellix" ? "Trellix" : "HyprEdge",
+                alt: DISPLAY_NAME_MAP[pid] ?? DISPLAY_NAME_MAP.hypredge,
                 className: "keycloak__pageheader_brand"
             }}
             dropdownItems={userDropdownItems(isMasterRealm, isManager)}
