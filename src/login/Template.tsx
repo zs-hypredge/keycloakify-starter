@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { clsx } from "keycloakify/tools/clsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { TemplateProps } from "keycloakify/login/TemplateProps";
@@ -9,8 +9,21 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import trellixLogo from "../assets/trellix_logo.svg";
 import hypredgeLogo from "../assets/hypredge_logo.svg";
-import { getProductDefaults, getSecondaryColor, getTextColor } from "./utils/themeColors";
-import { ParticleBackground } from "./components/ParticleBackground";
+import plextracLogo from "../assets/plextrac_logo.svg";
+import { getProductDefaults, getSecondaryColor, getTextColor, getWaveColor } from "./utils/themeColors";
+import { WaveBackground } from "./components/WaveBackground";
+
+const LOGO_MAP: Record<string, string> = {
+    hypredge: hypredgeLogo,
+    trellix: trellixLogo,
+    plextrac: plextracLogo
+};
+
+const DISPLAY_NAME_MAP: Record<string, string> = {
+    hypredge: "HyprEdge",
+    trellix: "Trellix",
+    plextrac: "PlexTrac"
+};
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -29,21 +42,17 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         children
     } = props;
 
-    const [logoUrl, setLogoUrl] = useState<string>("");
     const productId = kcContext.properties?.ZS_PRODUCT_ID || "hypredge";
+    const pid = productId.toLowerCase();
+    const logoUrl = LOGO_MAP[pid] ?? LOGO_MAP.hypredge;
+    const displayName = DISPLAY_NAME_MAP[pid] ?? DISPLAY_NAME_MAP.hypredge;
+    const waveColor = getWaveColor(pid);
 
     const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
 
     const { msg, msgStr, currentLanguage, enabledLanguages } = i18n;
 
     const { auth, url, message, isAppInitiatedAction } = kcContext;
-
-    const isHypredge = productId.toLowerCase() !== "trellix";
-
-    useEffect(() => {
-        const logo = productId.toLowerCase() === "trellix" ? trellixLogo : hypredgeLogo;
-        setLogoUrl(logo);
-    }, [productId]);
 
     // Apply theme CSS variables from kcContext.properties (injected by SPI)
     useEffect(() => {
@@ -94,13 +103,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     return (
         <div className={kcClsx("kcLoginClass")} style={{ position: "relative" }}>
-            {isHypredge && <ParticleBackground />}
+            <WaveBackground color={waveColor} />
             <div id="kc-header" className={kcClsx("kcHeaderClass")} style={{ position: "relative", zIndex: 1 }}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {/* {msg("loginTitleHtml", realm.displayNameHtml)} */}
                     <img
                         src={logoUrl}
-                        alt={productId === "trellix" ? "Trellix" : "HyprEdge"}
+                        alt={displayName}
                         width={"300px"}
                     />
                 </div>

@@ -42,6 +42,30 @@ export const WithInvalidCredential: Story = {
     )
 };
 
+export const PlexTrac: Story = {
+    render: () => (
+        <KcPageStory
+            kcContext={{
+                properties: {
+                    ZS_PRODUCT_ID: "plextrac"
+                }
+            }}
+        />
+    )
+};
+
+export const Trellix: Story = {
+    render: () => (
+        <KcPageStory
+            kcContext={{
+                properties: {
+                    ZS_PRODUCT_ID: "trellix"
+                }
+            }}
+        />
+    )
+};
+
 export const WithoutRegistration: Story = {
     render: () => (
         <KcPageStory

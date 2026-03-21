@@ -11,6 +11,19 @@
 
 import hypredgeLogoUrl from "../../assets/hypredge_logo.svg";
 import trellixLogoUrl from "../../assets/trellix_logo.svg";
+import plextracLogoUrl from "../../assets/plextrac_logo.svg";
+
+const LOGO_MAP: Record<string, string> = {
+    hypredge: hypredgeLogoUrl,
+    trellix: trellixLogoUrl,
+    plextrac: plextracLogoUrl
+};
+
+const DISPLAY_NAME_MAP: Record<string, string> = {
+    hypredge: "HyprEdge",
+    trellix: "Trellix",
+    plextrac: "PlexTrac"
+};
 import { KeycloakMasthead, label, useEnvironment } from "../../shared/keycloak-ui-shared";
 import { Button } from "../../shared/@patternfly/react-core";
 import { ExternalLinkSquareAltIcon } from "../../shared/@patternfly/react-icons";
@@ -47,7 +60,8 @@ export const Header = () => {
     const { t } = useTranslation();
 
     const productId = window.kcContext?.properties?.ZS_PRODUCT_ID || "hypredge";
-    const logoSvgUrl = productId.toLowerCase() === "trellix" ? trellixLogoUrl : hypredgeLogoUrl;
+    const pid = productId.toLowerCase();
+    const logoSvgUrl = LOGO_MAP[pid] ?? LOGO_MAP.hypredge;
 
     const logoUrl = environment.logoUrl ? environment.logoUrl : "/";
     const internalLogoHref = useHref(logoUrl);
@@ -63,7 +77,7 @@ export const Header = () => {
             brand={{
                 href: indexHref,
                 src: logoSvgUrl,
-                alt: productId.toLowerCase() === "trellix" ? "Trellix" : "HyprEdge",
+                alt: DISPLAY_NAME_MAP[pid] ?? DISPLAY_NAME_MAP.hypredge,
                 className: style.brand
             }}
             toolbarItems={[<ReferrerLink key="link" />]}

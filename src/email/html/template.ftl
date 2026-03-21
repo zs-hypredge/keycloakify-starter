@@ -6,11 +6,24 @@
 -->
 
 <#assign productId = (properties.ZS_PRODUCT_ID)!"hypredge">
-<#assign isHypredge = (productId?lower_case != "trellix")>
-<#assign logoFile = isHypredge?then("hypredge_logo.svg", "trellix_logo.svg")>
-<#assign primaryColor = isHypredge?then("#7371fc", "#87bfff")>
-<#assign bgColor = isHypredge?then("#0a0f24", "#111111")>
-<#assign productName = isHypredge?then("HyprEdge", "Trellix")>
+<#assign pid = productId?lower_case>
+
+<#if pid == "trellix">
+  <#assign logoFile = "trellix_logo.svg">
+  <#assign primaryColor = "#87bfff">
+  <#assign bgColor = "#111111">
+  <#assign productName = "Trellix">
+<#elseif pid == "plextrac">
+  <#assign logoFile = "plextrac_logo.svg">
+  <#assign primaryColor = "#8F70E6">
+  <#assign bgColor = "#252428">
+  <#assign productName = "PlexTrac">
+<#else>
+  <#assign logoFile = "hypredge_logo.svg">
+  <#assign primaryColor = "#7371fc">
+  <#assign bgColor = "#0a0f24">
+  <#assign productName = "HyprEdge">
+</#if>
 
 <#macro emailLayout>
 <html>

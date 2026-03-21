@@ -6,13 +6,26 @@
 /** Product-specific default palettes. */
 const PRODUCT_DEFAULTS: Record<string, { primary: string; bg: string; lightMode: boolean }> = {
   hypredge: { primary: "#7371fc", bg: "#0a0f24", lightMode: false },
-  trellix: { primary: "#87bfff", bg: "#111111", lightMode: false }
+  trellix: { primary: "#87bfff", bg: "#111111", lightMode: false },
+  plextrac: { primary: "#8F70E6", bg: "#252428", lightMode: false }
 };
 
 const PRODUCT_DEFAULTS_LIGHT: Record<string, { primary: string; bg: string }> = {
   hypredge: { primary: "#665dfd", bg: "#fefefe" },
-  trellix: { primary: "#0263d1", bg: "#ffffff" }
+  trellix: { primary: "#0263d1", bg: "#ffffff" },
+  plextrac: { primary: "#5D33C1", bg: "#F8F8F8" }
 };
+
+/** Wave animation color per product. */
+const WAVE_COLORS: Record<string, string> = {
+  hypredge: "#3BE8B0",
+  trellix: "#87bfff",
+  plextrac: "#8F70E6"
+};
+
+export function getWaveColor(productId: string): string {
+  return WAVE_COLORS[productId.toLowerCase()] ?? WAVE_COLORS.hypredge;
+}
 
 export function getProductDefaults(productId: string, lightMode: boolean) {
   const key = productId.toLowerCase();
